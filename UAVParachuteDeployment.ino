@@ -18,7 +18,7 @@ boolean STATUS = true;
 void loop() {
   if (!checkVoltage() || !checkAcceleration()) {  // need specific order here, so as to short circuit appropriately?
     sendDeployCommand();
-    //shutDown(); ???
+    // shutDown(); ???
     // break somehow, so it doesn't continue to fire solenoid after failure?
   }
 }
