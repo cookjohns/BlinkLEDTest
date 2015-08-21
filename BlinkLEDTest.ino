@@ -1,31 +1,49 @@
 /*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
+  Pinin/out Test for ATtiny85
 
-  Most Arduinos have an on-board LED you can control. On the Uno and
-  Leonardo, it is attached to digital pin 13. If you're unsure what
-  pin the on-board LED is connected to on your Arduino model, check
-  the documentation at http://www.arduino.cc
-
-  This example code is in the public domain.
-
-  modified 8 May 2014
-  by Scott Fitzgerald
+  modified date: See date of latest commmit on GitHub
+  by John Cook, Allison MacDonald
  */
 
+/* Pin 3 set to send parachute deployment signal */
+// CHECK THESE DUMMY VALUES
+int DEPLOYPIN  = 3;
+int VOLTAGEPIN = 5;
+int ACCELPIN   = 6;
+boolean PASS   = true;
+boolean FAIL   = false;
+boolean STATUS = true;
 
-/* VICTORY*/
+// runs continuosly
+void loop() {
+  if (!checkVoltage() || !checkAcceleration()) {  // need specific order here, so as to short circuit appropriately?
+    sendDeployCommand();
+    //shutDown(); ???
+    // break somehow, so it doesn't continue to fire solenoid after failure?
+  }
+}
 
-// the setup function runs once when you press reset or power the board
+// the setup function runs once when you power the board
 void setup() {
   // initialize digital pin 13 as an output.
   pinMode(13, OUTPUT);
 }
 
-// the loop function runs over and over again forever
-void loop() {
-  digitalWrite(0, HIGH);    // turn the LED on (HIGH is the voltage level)
-  delay(1000);              // wait for a second
-  digitalWrite(0, LOW);     // turn the LED off by making the voltage LOW
-  delay(1000);              // wait for a second
+// writes a 1 to pin 3 in order to activate solenoid to open parachute
+void sendDeployCommand() {
+  digitalWrite(DEPLOYPIN, HIGH);
+}
+
+// returns true if voltage is above 0.3
+boolean checkVoltage() {
+  int voltage = analogRead(VOLTAGEPIN);
+  if (voltage >= 61.44) return PASS;
+  return FAIL;
+}
+
+// returns true if downward acceleration is too fast (need exact value)
+boolean checkAcceleration() {
+  int acceleration = analogRead(ACCELPIN);
+  if (acceleration >= 500) return FAIL;
+  return PASS;
 }
