@@ -16,7 +16,7 @@ boolean STATUS = true;
 
 // runs continuosly
 void loop() {
-  // insert watchdog timer
+  // insert watchdog timer 
   
   if (!checkVoltage() || !checkAcceleration()) {  // need specific order here, so as to short circuit appropriately?
     sendDeployCommand();
