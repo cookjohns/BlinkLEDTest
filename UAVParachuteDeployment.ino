@@ -1,9 +1,9 @@
-/*
+/****************************************************
   Pinin/out Test for ATtiny85
 
   modified date: See date of latest commmit on GitHub
   by John Cook, Allison MacDonald
- */
+*****************************************************/
 
 /* Pin 3 set to send parachute deployment signal */
 // CHECK THESE DUMMY VALUES
