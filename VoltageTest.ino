@@ -6,9 +6,9 @@
 *****************************************************/
 
 /* Set up pins */
-int INPUTPIN     = 1;
-int OUTPUTLOW    = 7;
-int OUTPUTHIGH   = 8;
+int INPUTPIN     = 2;
+int OUTPUTLOW    = 5;
+int OUTPUTHIGH   = 6;
 
 // executes once on power up
 void setup() {
