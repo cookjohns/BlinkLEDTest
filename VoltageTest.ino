@@ -6,14 +6,15 @@
 *****************************************************/
 
 /* Set up pins */
-int INPUTPIN     = 2;
-int OUTPUTLOW    = 5;
-int OUTPUTHIGH   = 6;
+int INPUTPIN     = 3;
+int OUTPUTLOW    = 1;
+int OUTPUTHIGH   = 2;
 
 // executes once on power up
 void setup() {
-  pinMode(1, INPUT);
-  pinMode(8, OUTPUT);
+  pinMode(3, INPUT);
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
 }
 
 // executes continuously
