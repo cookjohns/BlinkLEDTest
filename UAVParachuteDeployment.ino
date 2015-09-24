@@ -5,6 +5,8 @@
   by John Cook, Allison MacDonald
 *****************************************************/
 
+#include <avr/wdt.h>
+
 /* Pin 3 set to send parachute deployment signal */
 // CHECK THESE DUMMY VALUES
 int DEPLOYPIN  = 1;
@@ -14,17 +16,7 @@ boolean PASS   = true;
 boolean FAIL   = false;
 boolean STATUS = false;
 boolean v      = true; // for voltage check inside loop
-
-// runs continuosly
-void loop() {
-  // insert watchdog timer 
-  v = checkVoltage(); // do this here to avoid calling it twice
-  
-  if (!v || checkAcceleration()) {
-    sendDeployCommand(v);
-    // break somehow, so it doesn't continue to fire solenoid after failure?
-  }
-}
+int iterations = 0;  // for crash reporting
 
 // the setup function runs once when you power the board
 void setup() {
@@ -32,6 +24,21 @@ void setup() {
   pinMode(1, OUTPUT);
   pinMode(3, INPUT);
   pinMode(6, INPUT);
+
+  // create watchdog timer object
+  wdt_enable(WDTO_1S);
+}
+
+// runs continuosly
+void loop() {
+  wdt_reset();  // reset watchdog timer
+  
+  v = checkVoltage(); // do this here to avoid calling it twice
+  
+  if (!v || checkAcceleration()) {
+    sendDeployCommand(v);
+    // break somehow, so it doesn't continue to fire solenoid after failure?
+  }
 }
 
 // sends HIGH to deploypin in order to activate solenoid to open parachute
