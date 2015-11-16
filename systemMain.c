@@ -50,7 +50,7 @@ bool checkVoltage() {
 }
 
 // initialize onboard ADC
-void initADC (){
+void initADC() {
     //Configure ADMUX register
     ADMUX =
     (1 << ADLAR)| //shift in a 1 and follow 8bit procedure
@@ -64,8 +64,7 @@ void initADC (){
 }
 
 // get voltage reading
-double checkVoltage()
-{
+double checkVoltage() {
     //make sure we define result as a double so we can mult/divide w/o error
     double result = 0;
     int temp = 0;
@@ -83,8 +82,7 @@ double checkVoltage()
     return PASS;
 }
 
-int main(void)
-{
+int main(void) {
     uint8_t i2cMessageBuf[I2C_MAX_MSG_SIZE];
     USI_TWI_Master_Initialise();
     initADC();
