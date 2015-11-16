@@ -9,8 +9,8 @@
 
 #define I2C_MAX_MSG_SIZE 5
 
-bool PASS = true;
-bool FAIL = false;
+bool static PASS = true;
+bool static FAIL = false;
 
 void long_delay_ms(uint16_t ms) {
     for (ms /= 10;ms>0;ms--) {
