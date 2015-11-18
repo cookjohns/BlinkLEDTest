@@ -45,41 +45,27 @@ bool checkAccel() {
     return PASS;
 }
 
-bool checkVoltage() {
-    return PASS;
-}
-
 // initialize onboard ADC
 void initADC() {
-    //Configure ADMUX register
-    ADMUX =
-    (1 << ADLAR)| //shift in a 1 and follow 8bit procedure
-    (1 << MUX1)| //Use ADC2 or PB4 pin for Vin
-    (0 << REFS0)| //set refs0 and 1 to 0 to use Vcc as Vref
-    (0 << REFS1);
-    //Configure ADCSRA register
-    ADCSRA =
-    (1 << ADEN)| //set ADEN bit to 1 to enable the ADC
-    (0 << ADSC); //set ADSC to 0 to make sure no conversions are happening
+    DDRB   |=  (1<<PB5);     ///PB5/digital 13 is an output
+    ADCSRA |=  ((1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0));    //Prescaler at 128 so we have an 125Khz clock source
+    ADMUX  |=  (1<<REFS0);
+    ADMUX  &= ~(1<<REFS1);   //Avcc(+5v) as voltage reference
+    ADCSRB &= ~((1<<ADTS2)|(1<<ADTS1)|(1<<ADTS0));    //ADC in free-running mode
+    ADCSRA |=  (1<<ADATE);   //Signal source, in this case is the free-running
+    ADCSRA |=  (1<<ADEN);    //Power up the ADC
+    ADCSRA |=  (1<<ADSC);    //Start converting
 }
 
 // get voltage reading
-double checkVoltage() {
-    //make sure we define result as a double so we can mult/divide w/o error
-    double result = 0;
-    int temp = 0;
-    //set ADSC pin to 1 in order to start reading the AIN value
-    ADCSRA |= (1 << ADSC);
-    //do nothing until the ADSC pin returns back to 0;
-    while (((ADCSRA >> ADSC) & 1)){}
-    //for 8 bit precision we can just read ADCH:
-    result = ADCH;
-    //to properly interpret the results as a voltage we need to
-    //divide the result by the maximum range: 2^(#bits precision)-1
-    //and multiply the result by the Vref value, Vcc or 5V
-    result = result * 5/255;
-    if (result == 0) return FAIL;
-    return PASS;
+bool checkVoltage() {
+    adc_value = ADCW;    // read the ADC value
+    if(adc_value > 0){
+        return PASS;
+    }
+    else {
+        return FAIL;
+    }
 }
 
 int main(void) {
