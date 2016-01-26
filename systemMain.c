@@ -101,9 +101,8 @@ int main(void) {
     // runs continuously
     for(;;){
         if (checkAccel() == FAIL || checkVoltage() == FAIL) {
-            
+            deployParachute();
         }
-        
     }
     // never reached
     return 0;
