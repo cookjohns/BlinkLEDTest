@@ -68,7 +68,7 @@ bool checkVoltage() {
     }
 }
 
-// activates parachute servo via PWM
+// activates parachute servo via PWM on PB4
 void deployParachute() {
     PLLCSR |= (1 << PLLE) | (1 << PCKE);
     
