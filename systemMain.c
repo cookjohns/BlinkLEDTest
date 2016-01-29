@@ -3,7 +3,7 @@
  */
 
 #include <avr/io.h>
-#include "USI_TWI_master.h"
+#include "USI_TWI_Master.h"
 #include <util/delay.h>
 #include <stdint.h>
 
