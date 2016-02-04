@@ -60,6 +60,7 @@ void initADC() {
 
 // get voltage reading
 int checkVoltage() {
+    // input on PB0
     int adc_value = ADCW;    // read the ADC value
     if(adc_value > 0){
         return PASS;
