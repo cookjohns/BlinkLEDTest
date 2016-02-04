@@ -13,6 +13,7 @@ int main(void){
     ADCSRA |= (1<<ADEN);                //Power up the ADC
     ADCSRA |= (1<<ADSC);                //Start converting
     
+	//Input is on PB0 and output is PB5 (built in LED)
     for(;;){            //The infinite loop
         adc_value = ADCW;    //Read the ADC value, really that's just it
         if(adc_value > 512){
