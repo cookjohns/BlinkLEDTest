@@ -1,0 +1,6 @@
+avr-gcc -Wall -Os -DF_CPU=1000000 -mmcu=attiny85  -c main.c -o main.o
+avr-gcc -Wall -Os -DF_CPU=1000000 -mmcu=attiny85 -o main.elf main.o USI_TWI_Master.o
+avr-objcopy -j .text -j .data -O ihex main.elf main.hex
+avrdude -c usbtiny  -p attiny85  -U flash:w:main.hex:i
+
+

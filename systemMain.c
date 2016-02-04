@@ -3,14 +3,15 @@
  */
 
 #include <avr/io.h>
-#include "USI_TWI_master.h"
+#include "USI_TWI_Master.h"
 #include <util/delay.h>
 #include <stdint.h>
 
 #define I2C_MAX_MSG_SIZE 5
 
-bool static PASS = true;
-bool static FAIL = false;
+static int PASS = 1;
+static int FAIL = 0;
+uint8_t i2cMessageBuf[I2C_MAX_MSG_SIZE];
 
 void long_delay_ms(uint16_t ms) {
     for (ms /= 10;ms>0;ms--) {
@@ -19,7 +20,7 @@ void long_delay_ms(uint16_t ms) {
 }
 
 // returns true if downward acceleration is too fast (need exact value)
-bool checkAccel() {
+int checkAccel() {
     // construct a command to read channel 0 of a 9150 accelerometer
     i2cMessageBuf[0] = (uint8_t) 0xD0;
     
@@ -38,9 +39,9 @@ bool checkAccel() {
     long_delay_ms(500);
     
     // check value
-    if (/*i2cMessageBuf[x] > y*/) {
-        return FAIL;
-    }
+//    if (i2cMessageBuf[x] > y) {
+//        return FAIL;
+//    }
     
     return PASS;
 }
@@ -58,8 +59,8 @@ void initADC() {
 }
 
 // get voltage reading
-bool checkVoltage() {
-    adc_value = ADCW;    // read the ADC value
+int checkVoltage() {
+    int adc_value = ADCW;    // read the ADC value
     if(adc_value > 0){
         return PASS;
     }
@@ -94,7 +95,6 @@ void deployParachute() {
 }
 
 int main(void) {
-    uint8_t i2cMessageBuf[I2C_MAX_MSG_SIZE];
     USI_TWI_Master_Initialise();
     initADC();
     
