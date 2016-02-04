@@ -1,0 +1,1 @@
+avr-gcc  -mmcu=attiny85 -Wall -gdwarf-2 -Os -std=gnu99 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -MD -MP -MT USI_TWI_Master.o -MF dep/USI_TWI_Master.o.d  -c  USI_TWI_Master.c
