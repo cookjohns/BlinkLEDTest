@@ -4,6 +4,8 @@
 #include <stdint.h>
 
 #define I2C_MAX_MSG_SIZE 5
+#define TRUE 1
+#define FALSE 0
 
 void long_delay_ms(uint16_t ms) {
     for (ms /= 10;ms>0;ms--) {
@@ -12,7 +14,7 @@ void long_delay_ms(uint16_t ms) {
 }
 
 int main(void) {
-    while (true) {
+    while (TRUE) {
         // construct a command to read channel 0 of a 9150 accelerometer
         i2cMessageBuf[0] = (uint8_t) 0xD0;
     

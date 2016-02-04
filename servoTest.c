@@ -3,7 +3,7 @@
 
 int main() {
     
-    PLLCSR |= (1 << PLLE) | (1 << PCKE);
+	PLLCSR |= (1 << PLLE) | (1 << PCKE);
 
     // Set prescaler to PCK/2048
     // (Setting CS (clock select) to 3)
@@ -20,7 +20,6 @@ int main() {
     
     TCCR1 |= (1 << COM1A0);
     
-	while (1) {} // run infinitely
-
+	//while (1) {} // run infinitely
 	return 0;
 }
