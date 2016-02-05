@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define I2C_MAX_MSG_SIZE 5
-#define TRUE 1
+#define TRUE  1
 #define FALSE 0
 
 void long_delay_ms(uint16_t ms) {
