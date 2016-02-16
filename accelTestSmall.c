@@ -24,17 +24,17 @@ int main(void) {
     
         // send the message
         USI_TWI_Start_Read_Write(i2cMessageBuf,(uint8_t) 0x02);
-        USI_TWI_Start_Read_Write(0x75, (uint16_t) 0x43); // gyro x - ????
+        //USI_TWI_Start_Read_Write(i2cMessageBuf/*0x75*/, (uint16_t) 0x43); // gyro x - ????
     
         // wait
         long_delay_ms(50);
     
         // read the msg
-        i2cMessageBuf[0]= 0xD1; // lsb == 1 => read
+        i2cMessageBuf[0] = 0xD1; // lsb == 1 => read
         USI_TWI_Start_Read_Write(i2cMessageBuf,(uint8_t) 0x03);
     
         // wait
-        long_delay_ms(500);
+        long_delay_ms(500);        
     }
     
     // never reached
