@@ -14,6 +14,10 @@ void long_delay_ms(uint16_t ms) {
 }
 
 int main(void) {
+    // initialize
+    uint8_t i2cMessageBuf[I2C_MAX_MSG_SIZE];
+    USI_TWI_Master_Initialise();
+    
     while (TRUE) {
         // construct a command to read channel 0 of a 9150 accelerometer
         i2cMessageBuf[0] = (uint8_t) 0xD0;
