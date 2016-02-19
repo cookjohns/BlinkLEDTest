@@ -34,7 +34,7 @@ int main(void) {
         USI_TWI_Start_Read_Write(i2cMessageBuf,(uint8_t) 0x03);
     
         // wait
-        long_delay_ms(500);        
+        long_delay_ms(500);
     }
     
     // never reached
