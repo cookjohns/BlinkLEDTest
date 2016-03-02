@@ -8,10 +8,10 @@
 #include <stdint.h>
 
 #define I2C_MAX_MSG_SIZE 5
-#define TRUE  1
-#define FALSE 2
 #define PASS  1
 #define FAIL  2
+
+uint8_t i2cMessageBuf[I2C_MAX_MSG_SIZE];
 
 // long delay in ms
 void long_delay_ms(uint16_t ms) {
@@ -106,7 +106,7 @@ int main(void) {
     
     // runs continuously
     for(;;){
-        if (checkAccel() == FAIL || checkVoltage() == FAIL) {
+        if (checkVoltage() == FAIL || checkAccel() == FAIL) {
             deployParachute();
         }
     }
