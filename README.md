@@ -2,7 +2,9 @@
 
 The purpose of this research is to develop a modular, embedded system that provides for the safe landing of an unmanned aerial vehicle (UAV) upon failure or other undesirable conditions. Such conditions include, but are not limited to, loss of power, destabilized flight, and entrance into restricted airspace.
 
-![alt text](https://drive.google.com/uc?id=0B0RNg9f7VJiEbjNmSU93Mjdoelk)
+Designed for use with the Atmel ATtiny85 micro controller and Invensense MPU-9150 9-axis accelerometer. A schematic including the TotalPhase Beagle Protocol Analyzer is below.
+
+![alt text](https://drive.google.com/uc?id=0B0RNg9f7VJiEdmh3LTZ0OUFhaFk)
 
 #### Requires avrdude/avr-gcc toolchain. To install:
 
