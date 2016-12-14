@@ -2,6 +2,8 @@
 
 The purpose of this research is to develop a modular, embedded system that provides for the safe landing of an unmanned aerial vehicle (UAV) upon failure or other undesirable conditions. Such conditions include, but are not limited to, loss of power, destabilized flight, and entrance into restricted airspace.
 
+![alt text](https://drive.google.com/uc?id=0B0RNg9f7VJiEbjNmSU93Mjdoelk)
+
 #### Requires avrdude/avr-gcc toolchain. To install:
 
 1. Install home-brew (for MacOS only)
